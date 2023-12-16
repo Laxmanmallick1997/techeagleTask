@@ -1,14 +1,14 @@
 const express = require("express");
 const productController = require("../controllers/productController");
-const { protectRoute } = require("../middleware/protectRoute");
+const { validateRoute } = require("../middleware/validateRoute");
 
 const productRouter = express.Router();
 
 productRouter.get("/", productController.getAllProducts);
 productRouter.get("/:id", productController.getProductById);
-productRouter.post("/add", protectRoute, productController.createProduct);
-productRouter.put("/update/:id", protectRoute, productController.updateProductById);
-productRouter.delete("/delete/:id", protectRoute, productController.deleteProductById);
+productRouter.post("/add", validateRoute, productController.createProduct);
+productRouter.put("/update/:id", validateRoute, productController.updateProductById);
+productRouter.delete("/delete/:id", validateRoute, productController.deleteProductById);
 
 module.exports = {
     productRouter
