@@ -1,5 +1,5 @@
 const { UserModel } = require("../models/userModel");
-const { token } = require("../utils/srver");
+const { token1 } = require("../utils/srver");
 const bcrypt = require('bcrypt');
 
 const registerUser = async (req, res) => {
@@ -23,7 +23,7 @@ const registerUser = async (req, res) => {
             password: hashedPassword
         });
 
-        const token = token(newUser._id, res);
+        const token = token1(newUser._id, res);
         const userData = {
             _id: newUser._id,
             name: newUser.name,
@@ -49,7 +49,7 @@ const authenticateUser = async (req, res) => {
             return res.status(400).json({ error: 'Invalid email or password' });
         }
 
-        const token = token(user._id, res);
+        const token = token1(user._id, res);
         const userData = {
             _id: user._id,
             name: user.name,
